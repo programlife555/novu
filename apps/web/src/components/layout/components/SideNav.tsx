@@ -31,6 +31,7 @@ import { useSpotlightContext } from '../../providers/SpotlightProvider';
 import { ChangesCountBadge } from './ChangesCountBadge';
 import OrganizationSelect from './OrganizationSelect';
 import { FeatureFlagsKeysEnum, UTM_CAMPAIGN_QUERY_PARAM } from '@novu/shared';
+import { FreeTrialWidget } from './FreeTrailWidget';
 
 const usePopoverStyles = createStyles(({ colorScheme }) => ({
   dropdown: {
@@ -202,6 +203,7 @@ export function SideNav({}: Props) {
           </Popover.Dropdown>
         </Popover>
         <NavMenu menuItems={menuItems} />
+        <FreeTrialWidget />
         <OrganizationSelect />
         <BottomNav dark={dark} data-test-id="side-nav-bottom-links">
           <a
