@@ -602,7 +602,9 @@
     "pyroscope",
     "HEAY",
     "Pyroscope",
-    "PYROSCOPE"
+    "PYROSCOPE",
+    "HeaderNavNew",
+    "reshard"
   ],
   "flagWords": [],
   "patterns": [
