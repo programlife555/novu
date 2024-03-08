@@ -58,6 +58,7 @@ const usePopoverStyles = createStyles(({ colorScheme }) => ({
 
 type Props = {};
 
+/** @deprecated Use `MainNav` instead */
 export function SideNav({}: Props) {
   const navigate = useNavigate();
   const segment = useSegment();

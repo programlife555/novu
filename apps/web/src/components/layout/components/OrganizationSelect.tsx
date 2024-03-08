@@ -1,15 +1,15 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import * as capitalize from 'lodash.capitalize';
-import styled from '@emotion/styled';
 import type { IResponseError, IOrganizationEntity } from '@novu/shared';
 
 import { Select } from '@novu/design-system';
 import { addOrganization, switchOrganization } from '../../../api/organization';
 import { useAuthContext } from '../../providers/AuthProvider';
 import { useSpotlightContext } from '../../providers/SpotlightProvider';
+import { css } from '../../../styled-system/css';
 
-export default function OrganizationSelect() {
+export const useOrganizationSelect = () => {
   const [value, setValue] = useState<string>('');
   const [search, setSearch] = useState<string>('');
   const [loadingSwitch, setLoadingSwitch] = useState<boolean>(false);
@@ -78,34 +78,61 @@ export default function OrganizationSelect() {
     addItem(organizationItems);
   }, [addItem, removeItems, organizationItems, value]);
 
-  return (
-    <>
-      <SelectWrapper>
-        <Select
-          data-test-id="organization-switch"
-          loading={loadingAddOrganization || loadingSwitch}
-          creatable
-          searchable
-          getCreateLabel={(newOrganization) => <div>+ Add "{newOrganization}"</div>}
-          onCreate={addOrganizationItem}
-          value={value}
-          onChange={switchOrgCallback}
-          allowDeselect={false}
-          onSearchChange={setSearch}
-          data={(organizations || []).map((item) => ({
-            label: capitalize(item.name),
-            value: item._id,
-          }))}
-        />
-      </SelectWrapper>
-    </>
-  );
+  return {
+    loadingAddOrganization,
+    loadingSwitch,
+    addOrganizationItem,
+    value,
+    switchOrgCallback,
+    setSearch,
+    data: (organizations || []).map((item) => ({
+      label: capitalize(item.name),
+      value: item._id,
+    })),
+  };
+};
+
+interface IOrganizationSelectRendererProps {
+  loadingAddOrganization: boolean;
+  loadingSwitch: boolean;
+  addOrganizationItem: (newOrganization: string) => undefined;
+  value: string;
+  switchOrgCallback: (organizationId: string | string[] | null) => Promise<void>;
+  setSearch: React.Dispatch<React.SetStateAction<string>>;
+  data: {
+    label: string;
+    value: string;
+  }[];
 }
 
-const SelectWrapper = styled.div`
-  margin-top: 16px;
+export const OrganizationSelectRenderer: React.FC<IOrganizationSelectRendererProps> = ({
+  loadingAddOrganization,
+  loadingSwitch,
+  addOrganizationItem,
+  value,
+  switchOrgCallback,
+  setSearch,
+  data,
+}) => {
+  return (
+    <div className={css({ mt: '100', '& input': { bg: 'transparent' } })}>
+      <Select
+        data-test-id="organization-switch"
+        loading={loadingAddOrganization || loadingSwitch}
+        creatable
+        searchable
+        getCreateLabel={(newOrganization) => <div>+ Add "{newOrganization}"</div>}
+        onCreate={addOrganizationItem}
+        value={value}
+        onChange={switchOrgCallback}
+        allowDeselect={false}
+        onSearchChange={setSearch}
+        data={data}
+      />
+    </div>
+  );
+};
 
-  input {
-    background: transparent;
-  }
-`;
+export default function OrganizationSelect() {
+  return <OrganizationSelectRenderer {...useOrganizationSelect()} />;
+}
