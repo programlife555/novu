@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { css } from '../../styled-system/css';
+import { RootNavMenu } from './RootNavMenu';
 
 interface IMainNavProps {
   _temp?: string;
@@ -21,7 +22,7 @@ export const MainNav: FC<IMainNavProps> = () => {
   return (
     <aside className={sidebarStyle}>
       {/* <SettingsNavMenu /> */}
-      {/* <RootNavMenu /> */}
+      <RootNavMenu />
     </aside>
   );
 };

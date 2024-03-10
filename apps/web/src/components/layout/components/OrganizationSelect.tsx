@@ -115,21 +115,20 @@ export const OrganizationSelectRenderer: React.FC<IOrganizationSelectRendererPro
   data,
 }) => {
   return (
-    <div className={css({ mt: '100', '& input': { bg: 'transparent' } })}>
-      <Select
-        data-test-id="organization-switch"
-        loading={loadingAddOrganization || loadingSwitch}
-        creatable
-        searchable
-        getCreateLabel={(newOrganization) => <div>+ Add "{newOrganization}"</div>}
-        onCreate={addOrganizationItem}
-        value={value}
-        onChange={switchOrgCallback}
-        allowDeselect={false}
-        onSearchChange={setSearch}
-        data={data}
-      />
-    </div>
+    <Select
+      className={css({ mt: '100', '& input': { bg: 'transparent' } })}
+      data-test-id="organization-switch"
+      loading={loadingAddOrganization || loadingSwitch}
+      creatable
+      searchable
+      getCreateLabel={(newOrganization) => <div>+ Add "{newOrganization}"</div>}
+      onCreate={addOrganizationItem}
+      value={value}
+      onChange={switchOrgCallback}
+      allowDeselect={false}
+      onSearchChange={setSearch}
+      data={data}
+    />
   );
 };
 

@@ -8,6 +8,7 @@ import {
   IconConstruction,
   IconKey,
   IconWebhook,
+  IconRocketLaunch,
 } from '@novu/design-system';
 import { NavMenu } from './NavMenu';
 import { NavMenuLinkButton, NavMenuToggleButton } from './NavMenuButton';
@@ -79,7 +80,7 @@ export const SettingsNavMenu: React.FC = () => {
             testId="side-nav-settings-development-inbound-webhook"
           ></NavMenuLinkButton>
         </NavMenuToggleButton>
-        <NavMenuToggleButton icon={<IconConstruction />} label={'Production'} testId="side-nav-settings-production">
+        <NavMenuToggleButton icon={<IconRocketLaunch />} label={'Production'} testId="side-nav-settings-production">
           <NavMenuLinkButton
             label="API keys"
             isVisible
