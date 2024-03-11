@@ -1,6 +1,9 @@
+import { ROUTES } from '@novu/shared-web';
 import { FC } from 'react';
+import { useMatch, useRoutes } from 'react-router-dom';
 import { css } from '../../styled-system/css';
 import { RootNavMenu } from './RootNavMenu';
+import { SettingsNavMenu } from './SettingsNavMenu';
 
 interface IMainNavProps {
   _temp?: string;
@@ -18,11 +21,17 @@ const sidebarStyle = css({
   bg: 'surface.panel',
 });
 
+interface ISidebarNavProps {
+  root: JSX.Element;
+  routeMenus?: Record<Partial<ROUTES>, JSX.Element>;
+}
+
+export const SidebarNav: FC<ISidebarNavProps> = () => {
+  const isSettingsPage = useMatch(ROUTES.SETTINGS);
+
+  return <aside className={sidebarStyle}>{isSettingsPage ? <SettingsNavMenu /> : <RootNavMenu />}</aside>;
+};
+
 export const MainNav: FC<IMainNavProps> = () => {
-  return (
-    <aside className={sidebarStyle}>
-      {/* <SettingsNavMenu /> */}
-      <RootNavMenu />
-    </aside>
-  );
+  return <SidebarNav root={<RootNavMenu />} />;
 };

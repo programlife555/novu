@@ -4,6 +4,7 @@ import { css } from '../../styled-system/css';
 import { Flex, styled, VStack } from '../../styled-system/jsx';
 import { title as titleRecipe } from '../../styled-system/recipes';
 import { LocalizedMessage } from '@novu/shared-web';
+import { useNavigate } from 'react-router-dom';
 
 type NavMenuVariant = 'root' | 'nested';
 
@@ -44,10 +45,13 @@ export const NavMenu: FC<React.PropsWithChildren<INavMenuProps>> = ({
   onBackButtonClick,
   children,
 }) => {
+  const navigate = useNavigate();
+
   const handleBackButtonClick: MouseEventHandler = (event) => {
     onBackButtonClick?.(event);
 
     // FIXME: go back
+    navigate(-1);
   };
 
   return (
