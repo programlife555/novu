@@ -1,6 +1,6 @@
 import { Select } from '@novu/design-system';
 import { css } from '../../styled-system/css';
-import { useOrganizationSelect } from '../layout/components/OrganizationSelect';
+import { useOrganizationSelect } from '../layout/components/useOrganizationSelect';
 
 interface INavOrganizationSelectRendererProps {
   loadingAddOrganization: boolean;
