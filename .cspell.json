@@ -604,7 +604,9 @@
     "Pyroscope",
     "PYROSCOPE",
     "usecases",
-    "usecase"
+    "usecase",
+    "uuidv",
+    "Vonage"
   ],
   "flagWords": [],
   "patterns": [
