@@ -1,7 +1,7 @@
 import { Popover } from '@mantine/core';
 import { IconClose } from '@novu/design-system';
-import { MouseEventHandler, PropsWithChildren, useState } from 'react';
-import { css } from '../../styled-system/css';
+import { MouseEventHandler, PropsWithChildren } from 'react';
+import { css } from '../../../styled-system/css';
 
 const popoverDropdownStyle = css({
   // padding: '12px 20px 14px 15px',
