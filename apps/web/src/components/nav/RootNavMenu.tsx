@@ -17,13 +17,13 @@ import { EnvironmentSelect } from './EnvironmentSelect';
 import { NavMenu } from './NavMenu';
 import { NavMenuLinkButton } from './NavMenuButton';
 import { NavMenuSection } from './NavMenuSection';
-import { NavOrganizationSelect } from './NavOrganizationSelect';
+import { OrganizationSelect } from './OrganizationSelect/v2/OrganizationSelect';
 
 export const RootNavMenu: React.FC = () => {
   return (
     <NavMenu variant="root">
       <NavMenuSection>
-        <NavOrganizationSelect />
+        <OrganizationSelect />
         <NavMenuLinkButton
           label="Get started"
           isVisible={true}

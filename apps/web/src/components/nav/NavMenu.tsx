@@ -6,6 +6,10 @@ import { title as titleRecipe } from '../../styled-system/recipes';
 import { LocalizedMessage } from '@novu/shared-web';
 import { useNavigate } from 'react-router-dom';
 
+/**
+ * designate whether a menu is a root / top-level menu
+ * or if it is a nested view
+ */
 type NavMenuVariant = 'root' | 'nested';
 
 interface INavMenuProps {
