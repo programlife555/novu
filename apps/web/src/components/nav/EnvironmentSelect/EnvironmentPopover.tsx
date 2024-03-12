@@ -12,8 +12,7 @@ const popoverDropdownStyle = css({
   position: 'absolute',
   color: 'typography.text.main',
   border: 'none',
-  // TODO: y u do this?
-  marginTop: '1px',
+  shadow: 'medium !important',
 });
 
 const popoverArrowStyle = css({
@@ -69,7 +68,6 @@ export const EnvironmentPopover: React.FC<PropsWithChildren<IEnvironmentPopoverP
       transitionDuration={250}
       position="right"
       radius="md"
-      // TODO: add shadows back!
     >
       <Popover.Target>{children}</Popover.Target>
       <Popover.Dropdown>
