@@ -1,4 +1,5 @@
 import {
+  // cspell:disable-next-line
   IconAutorenew,
   IconCellTower,
   IconDomain,
