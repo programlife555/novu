@@ -10,11 +10,19 @@ import {
   IconWebhook,
   IconRocketLaunch,
 } from '@novu/design-system';
+import { ROUTES, useAuthContext } from '@novu/shared-web';
 import { NavMenu } from './NavMenu';
 import { NavMenuLinkButton, NavMenuToggleButton } from './NavMenuButton';
 import { NavMenuSection } from './NavMenuSection';
 
+const getSettingsRoute = (route?: ROUTES) => `${ROUTES.SETTINGS}${route ?? ''}`;
+
 export const SettingsNavMenu: React.FC = () => {
+  const { currentOrganization } = useAuthContext();
+
+  // TODO: Parentheses were not part of designs, but I believe it's much clearer this way
+  const getOrgScopedTitle = (title: string) => `${title} ${`(${currentOrganization?.name})` ?? ''}`;
+
   return (
     <NavMenu variant="nested" title="Settings">
       <NavMenuSection title="Account">
@@ -22,61 +30,67 @@ export const SettingsNavMenu: React.FC = () => {
           label="User profile"
           isVisible
           icon={<IconManageAccounts />}
-          link={'/workflows'}
+          // TODO: add new route for profile
+          link={ROUTES.SETTINGS}
           testId="side-nav-settings-user-profile"
         ></NavMenuLinkButton>
       </NavMenuSection>
-      <NavMenuSection title="Organization <ORG NAME>">
+      <NavMenuSection title={getOrgScopedTitle('Organization')}>
         <NavMenuLinkButton
           label="Organization profile"
           isVisible
           icon={<IconRoomPreferences />}
-          link={'/todo'}
+          // TODO: new route for Organization
+          link={getSettingsRoute(ROUTES.SETTINGS)}
           testId="side-nav-settings-translations-link"
         ></NavMenuLinkButton>
         <NavMenuLinkButton
           label="Access security"
           isVisible
           icon={<IconAdminPanelSettings />}
-          link={'/todo'}
+          // TODO: add new route for Security
+          link={getSettingsRoute(ROUTES.SETTINGS)}
           testId="side-nav-settings-translations-link"
         ></NavMenuLinkButton>
         <NavMenuLinkButton
           label="Team members"
           isVisible
           icon={<IconGroup />}
-          link={'/todo'}
+          link={getSettingsRoute(ROUTES.TEAM)}
           testId="side-nav-settings-translations-link"
         ></NavMenuLinkButton>
         <NavMenuLinkButton
           label="Branding"
           isVisible
           icon={<IconWorkspacePremium />}
-          link={'/todo'}
+          link={getSettingsRoute(ROUTES.BRAND)}
           testId="side-nav-settings-translations-link"
         ></NavMenuLinkButton>
         <NavMenuLinkButton
           label="Billing plans"
           isVisible
           icon={<IconCreditCard />}
-          link={'/todo'}
+          // TODO: add new route for Billing
+          link={getSettingsRoute(ROUTES.SETTINGS)}
           testId="side-nav-settings-translations-link"
         ></NavMenuLinkButton>
       </NavMenuSection>
-      <NavMenuSection title="Environments <ORG NAME>">
+      <NavMenuSection title={getOrgScopedTitle('Environments')}>
         <NavMenuToggleButton icon={<IconConstruction />} label={'Development'} testId="side-nav-settings-development">
           <NavMenuLinkButton
             label="API keys"
             isVisible
             icon={<IconKey />}
-            link={'/todo'}
+            // TODO: add new route for development/keys
+            link={getSettingsRoute(ROUTES.SETTINGS)}
             testId="side-nav-settings-development-api-keys"
           ></NavMenuLinkButton>
           <NavMenuLinkButton
             label="Inbound webhook"
             isVisible
             icon={<IconWebhook />}
-            link={'/todo'}
+            // TODO: add new route for development/webhook
+            link={getSettingsRoute(ROUTES.SETTINGS)}
             testId="side-nav-settings-development-inbound-webhook"
           ></NavMenuLinkButton>
         </NavMenuToggleButton>
@@ -85,14 +99,16 @@ export const SettingsNavMenu: React.FC = () => {
             label="API keys"
             isVisible
             icon={<IconKey />}
-            link={'/todo'}
+            // TODO: add new route for development/keys
+            link={getSettingsRoute(ROUTES.SETTINGS)}
             testId="side-nav-settings-production-api-keys"
           ></NavMenuLinkButton>
           <NavMenuLinkButton
             label="Inbound webhook"
             isVisible
             icon={<IconWebhook />}
-            link={'/todo'}
+            // TODO: add new route for prod/webhook
+            link={getSettingsRoute(ROUTES.SETTINGS)}
             testId="side-nav-settings-production-inbound-webhook"
           ></NavMenuLinkButton>
         </NavMenuToggleButton>

@@ -1,7 +1,7 @@
 import { IOrganizationEntity, IResponseError } from '@novu/shared';
 import { useAuthContext } from '@novu/shared-web';
 import { useQueryClient, useMutation } from '@tanstack/react-query';
-import { capitalize } from 'lodash.capitalize';
+import capitalize from 'lodash.capitalize';
 import { useState, useCallback, useMemo, useEffect } from 'react';
 import { addOrganization, switchOrganization } from '../../../api/organization';
 import { useSpotlightContext } from '../../providers/SpotlightProvider';

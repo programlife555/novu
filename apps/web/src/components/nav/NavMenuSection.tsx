@@ -14,7 +14,7 @@ export const NavMenuSection: FC<React.PropsWithChildren<INavMenuSectionProps>> =
   return (
     <section className={css({ w: '100%' })}>
       {title && (
-        <Title py="75" pl="125" variant={'secondary'} color="typography.text.tertiary" fontWeight={'normal'}>
+        <Title py="75" pl="125" variant="strong" color="typography.text.tertiary" textTransform="capitalize">
           {title}
         </Title>
       )}

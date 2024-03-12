@@ -3,7 +3,8 @@ import { LocalizedMessage } from '@novu/shared-web';
 import { FC, PropsWithChildren, ReactNode, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { css } from '../../styled-system/css';
-import { Flex, HStack } from '../../styled-system/jsx';
+import { Flex, HStack, styled } from '../../styled-system/jsx';
+import { text } from '../../styled-system/recipes';
 
 interface INavMenuButtonProps {
   icon: React.ReactElement<IIconProps>;
@@ -13,6 +14,8 @@ interface INavMenuButtonProps {
   tooltipLabel?: LocalizedMessage;
   testId?: string;
 }
+
+const Text = styled('span', text);
 
 interface INavMenuLinkButtonProps extends INavMenuButtonProps {
   link: string;
@@ -34,16 +37,14 @@ const rawButtonBaseStyles = css.raw({
     fill: 'typography.text.secondary',
   },
   fontWeight: 'strong',
+  fontFamily: 'system',
 
   // &.active is necessary to work with the react-router-dom className they generate
   '& _active, &.active': {
     position: 'relative',
     background: 'surface.page !important',
     // TODO: design system values when available
-    boxShadow: {
-      base: '0px 5px 20px 0px rgba(0, 0, 0, 0.20)',
-      _dark: '0px 5px 20px 0px rgba(0, 0, 0, 0.20)',
-    },
+    boxShadow: 'medium',
     backgroundClip: 'padding-box',
     color: 'typography.text.main !important',
     '& svg': {
@@ -57,11 +58,7 @@ const rawButtonBaseStyles = css.raw({
     '& svg': {
       fill: 'typography.text.main',
     },
-    // TODO: design system values when available
-    boxShadow: {
-      base: '0px 5px 20px 0px rgba(0, 0, 0, 0.20)',
-      _dark: '0px 5px 20px 0px rgba(0, 0, 0, 0.20)',
-    },
+    boxShadow: 'medium',
   },
 });
 
@@ -102,7 +99,9 @@ export const NavMenuLinkButton: FC<PropsWithChildren<INavMenuLinkButtonProps>> =
     >
       <HStack gap="75">
         {icon}
-        <p>{label}</p>
+        <Text variant={'strong'} color="typography.text.secondary">
+          {label}
+        </Text>
       </HStack>
       {rightSide ? rightSide : null}
     </NavLink>
@@ -129,7 +128,9 @@ export const NavMenuToggleButton: FC<PropsWithChildren<INavMenuToggleButtonProps
         <HStack justifyContent={'space-between'} w="inherit">
           <HStack gap="75">
             {icon}
-            <p>{label}</p>
+            <Text variant={'strong'} color="typography.text.secondary">
+              {label}
+            </Text>
           </HStack>
           {isOpen ? <IconArrowDropUp /> : <IconArrowDropDown />}
         </HStack>
