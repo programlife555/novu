@@ -12,7 +12,8 @@ import {
 } from '@novu/design-system';
 import { ROUTES, useAuthContext } from '@novu/shared-web';
 import { NavMenu } from './NavMenu';
-import { NavMenuLinkButton, NavMenuToggleButton } from './NavMenuButton';
+import { NavMenuLinkButton } from './NavMenuButton/NavMenuLinkButton';
+import { NavMenuToggleButton } from './NavMenuButton/NavMenuToggleButton';
 import { NavMenuSection } from './NavMenuSection';
 
 const getSettingsRoute = (route?: ROUTES) => `${ROUTES.SETTINGS}${route ?? ''}`;

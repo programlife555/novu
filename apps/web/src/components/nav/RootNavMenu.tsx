@@ -16,7 +16,7 @@ import { ROUTES } from '@novu/shared-web';
 import { HStack } from '../../styled-system/jsx';
 import { EnvironmentSelect } from './EnvironmentSelect';
 import { NavMenu } from './NavMenu';
-import { NavMenuLinkButton } from './NavMenuButton';
+import { NavMenuLinkButton } from './NavMenuButton/NavMenuLinkButton';
 import { NavMenuSection } from './NavMenuSection';
 import { OrganizationSelect } from './OrganizationSelect/v2/OrganizationSelect';
 
