@@ -3,7 +3,7 @@ import { FC, MouseEventHandler } from 'react';
 import { css } from '../../styled-system/css';
 import { Flex, styled, VStack } from '../../styled-system/jsx';
 import { title as titleRecipe } from '../../styled-system/recipes';
-import { LocalizedMessage } from '@novu/shared-web';
+import { LocalizedMessage, ROUTES } from '@novu/shared-web';
 import { useNavigate } from 'react-router-dom';
 
 /**
@@ -53,9 +53,7 @@ export const NavMenu: FC<React.PropsWithChildren<INavMenuProps>> = ({
 
   const handleBackButtonClick: MouseEventHandler = (event) => {
     onBackButtonClick?.(event);
-
-    // FIXME: go back
-    navigate(-1);
+    navigate(ROUTES.HOME);
   };
 
   return (
