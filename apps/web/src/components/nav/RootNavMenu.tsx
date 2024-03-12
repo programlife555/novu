@@ -11,16 +11,26 @@ import {
   IconTranslate,
   IconViewQuilt,
 } from '@novu/design-system';
-import { ROUTES } from '@novu/shared-web';
 import { ChangesCountBadge } from '../layout/components/ChangesCountBadge';
+import { ROUTES, useSegment } from '@novu/shared-web';
+import { useUserOnboardingStatus } from '../../api/hooks/useUserOnboardingStatus';
 import { EnvironmentSelect } from './EnvironmentSelect';
 import { NavMenu } from './NavMenu';
 import { NavMenuLinkButton } from './NavMenuButton/NavMenuLinkButton';
 import { NavMenuSection } from './NavMenuSection';
 import { OrganizationSelect } from './OrganizationSelect/v2/OrganizationSelect';
 import { RootNavMenuFooter } from './RootNavMenuFooter';
+import { VisibilityButton } from './VisibilityButton';
 
 export const RootNavMenu: React.FC = () => {
+  const segment = useSegment();
+  const { updateOnboardingStatus } = useUserOnboardingStatus();
+
+  const handleHideOnboardingClick: React.MouseEventHandler = async () => {
+    segment.track('Click Hide Get Started Page - [Get Started]');
+    await updateOnboardingStatus({ showOnboarding: false });
+  };
+
   return (
     <NavMenu variant="root">
       <NavMenuSection>
@@ -30,9 +40,12 @@ export const RootNavMenu: React.FC = () => {
           isVisible={true}
           icon={<IconTaskAlt />}
           link={ROUTES.GET_STARTED}
-          // rightSide: { component: <VisibilityOff onClick={handleHideOnboardingClick} /> displayOnHover: true }} />}
           testId="side-nav-quickstart-link"
-          // tooltipLabel: 'Hide this page from menu',
+          rightSide={{
+            node: <VisibilityButton onClick={handleHideOnboardingClick} />,
+            triggerOn: 'hover',
+            tooltip: 'Hide this page from menu',
+          }}
         />
         <NavMenuLinkButton
           icon={<IconCellTower />}
