@@ -11,9 +11,9 @@ import {
   IconTranslate,
   IconViewQuilt,
 } from '@novu/design-system';
+import { ChangesCountBadge } from '../layout/components/ChangesCountBadge';
 import { ROUTES, useSegment } from '@novu/shared-web';
 import { useUserOnboardingStatus } from '../../api/hooks/useUserOnboardingStatus';
-import { ChangesCountBadge } from '../layout/components/ChangesCountBadge';
 import { EnvironmentSelect } from './EnvironmentSelect';
 import { NavMenu } from './NavMenu';
 import { NavMenuLinkButton } from './NavMenuButton/NavMenuLinkButton';
@@ -21,7 +21,6 @@ import { NavMenuSection } from './NavMenuSection';
 import { OrganizationSelect } from './OrganizationSelect/v2/OrganizationSelect';
 import { RootNavMenuFooter } from './RootNavMenuFooter';
 import { VisibilityButton } from './VisibilityButton';
-import { RootNavMenuFooter } from './RootNavMenuFooter';
 
 export const RootNavMenu: React.FC = () => {
   const segment = useSegment();
