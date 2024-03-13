@@ -67,7 +67,7 @@ export const RootNavMenu: React.FC = () => {
           icon={<IconAutorenew />}
           link={ROUTES.CHANGES}
           testId={'side-nav-changes-link'}
-          rightSide={{ node: <ChangesCountBadge /> }}
+          // rightSide={{ node: <ChangesCountBadge /> }}
           isVisible={true}
         />
         <NavMenuLinkButton
