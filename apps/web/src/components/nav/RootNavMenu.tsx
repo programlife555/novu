@@ -24,7 +24,7 @@ import { VisibilityButton } from './VisibilityButton';
 
 export const RootNavMenu: React.FC = () => {
   const segment = useSegment();
-  const { updateOnboardingStatus } = useUserOnboardingStatus();
+  const { updateOnboardingStatus, showOnboarding, isLoading: isLoadingOnboardingStatus } = useUserOnboardingStatus();
 
   const handleHideOnboardingClick: React.MouseEventHandler = async () => {
     segment.track('Click Hide Get Started Page - [Get Started]');
@@ -37,7 +37,7 @@ export const RootNavMenu: React.FC = () => {
         <OrganizationSelect />
         <NavMenuLinkButton
           label="Get started"
-          isVisible={true}
+          isVisible={!isLoadingOnboardingStatus && showOnboarding}
           icon={<IconTaskAlt />}
           link={ROUTES.GET_STARTED}
           testId="side-nav-quickstart-link"

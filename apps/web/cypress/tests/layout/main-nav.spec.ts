@@ -1,7 +1,23 @@
-describe('MainNav', () => {
+describe('Main Nav (Sidebar)', function () {
   beforeEach(function () {
     cy.initializeSession().as('session');
     cy.visit('/');
+  });
+
+  it('should navigate correctly to notification-templates', function () {
+    cy.getByTestId('side-nav-templates-link').should('have.attr', 'href').should('include', '/workflows');
+  });
+
+  it('should show bottom support, docs and share feedback', function () {
+    cy.getByTestId('side-nav-bottom-links').scrollIntoView().should('be.visible');
+    cy.getByTestId('side-nav-bottom-link-support').should('have.attr', 'href').should('eq', 'https://discord.novu.co');
+    cy.getByTestId('side-nav-bottom-link-documentation')
+      .should('have.attr', 'href')
+      .should('eq', 'https://docs.novu.co?utm_campaign=in-app');
+
+    cy.getByTestId('side-nav-bottom-link-share-feedback')
+      .should('have.attr', 'href')
+      .should('eq', 'https://github.com/novuhq/novu/issues/new/choose');
   });
 
   it('should render all navigation links', () => {
@@ -27,6 +43,14 @@ describe('MainNav', () => {
 
     cy.getByTestId('side-nav-settings-link').click();
     cy.url().should('include', '/settings');
+  });
+
+  it('should hide "Get started" link after clicking the visibility button', () => {
+    // Click the visibility button next to the "Get started" link
+    cy.getByTestId('side-nav-quickstart-link').should('exist').trigger('mouseover').find('button').click();
+
+    // Check if the "Get started" link is no longer visible
+    cy.getByTestId('side-nav-quickstart-link').should('not.exist');
   });
 
   it('should display settings menu when navigating to settings page', () => {
