@@ -10,7 +10,7 @@ export type RightSideTrigger = 'hover';
 export interface INavMenuButtonRightSideConfig {
   node: ReactNode;
   tooltip?: LocalizedMessage;
-  triggerOn: RightSideTrigger;
+  triggerOn?: RightSideTrigger;
 }
 export interface INavMenuButtonProps {
   icon: React.ReactElement<IIconProps>;
