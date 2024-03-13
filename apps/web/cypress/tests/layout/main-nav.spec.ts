@@ -1,14 +1,14 @@
-describe('Main Nav (Sidebar)', function () {
-  beforeEach(function () {
+describe('Main Nav (Sidebar)', () => {
+  beforeEach(() => {
     cy.initializeSession().as('session');
     cy.visit('/');
   });
 
-  it('should navigate correctly to notification-templates', function () {
+  it('should navigate correctly to notification-templates', () => {
     cy.getByTestId('side-nav-templates-link').should('have.attr', 'href').should('include', '/workflows');
   });
 
-  it('should show bottom support, docs and share feedback', function () {
+  it('should show bottom support, docs and share feedback', () => {
     cy.getByTestId('side-nav-bottom-links').scrollIntoView().should('be.visible');
     cy.getByTestId('side-nav-bottom-link-support').should('have.attr', 'href').should('eq', 'https://discord.novu.co');
     cy.getByTestId('side-nav-bottom-link-documentation')
