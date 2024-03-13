@@ -21,6 +21,7 @@ import { NavMenuSection } from './NavMenuSection';
 import { OrganizationSelect } from './OrganizationSelect/v2/OrganizationSelect';
 import { RootNavMenuFooter } from './RootNavMenuFooter';
 import { VisibilityButton } from './VisibilityButton';
+import { RootNavMenuFooter } from './RootNavMenuFooter';
 
 export const RootNavMenu: React.FC = () => {
   const segment = useSegment();
