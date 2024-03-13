@@ -11,15 +11,14 @@ import {
   IconTranslate,
   IconViewQuilt,
 } from '@novu/design-system';
-import { UTM_CAMPAIGN_QUERY_PARAM } from '@novu/shared';
 import { ROUTES } from '@novu/shared-web';
-import { HStack } from '../../styled-system/jsx';
 import { ChangesCountBadge } from '../layout/components/ChangesCountBadge';
 import { EnvironmentSelect } from './EnvironmentSelect';
 import { NavMenu } from './NavMenu';
 import { NavMenuLinkButton } from './NavMenuButton/NavMenuLinkButton';
 import { NavMenuSection } from './NavMenuSection';
 import { OrganizationSelect } from './OrganizationSelect/v2/OrganizationSelect';
+import { RootNavMenuFooter } from './RootNavMenuFooter';
 
 export const RootNavMenu: React.FC = () => {
   return (
@@ -101,46 +100,3 @@ export const RootNavMenu: React.FC = () => {
     </NavMenu>
   );
 };
-
-function RootNavMenuFooter() {
-  return (
-    <HStack
-      textStyle={'text.secondary'}
-      color="typography.text.secondary"
-      data-test-id="side-nav-root-footer"
-      position="fixed"
-      bottom={'100'}
-    >
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://discord.novu.co"
-        data-test-id="side-nav-bottom-link-support"
-      >
-        Support
-      </a>
-      <p>
-        <b>&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;</b>
-      </p>
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href={`https://docs.novu.co${UTM_CAMPAIGN_QUERY_PARAM}`}
-        data-test-id="side-nav-bottom-link-documentation"
-      >
-        Docs
-      </a>
-      <p>
-        <b>&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;</b>
-      </p>
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://github.com/novuhq/novu/issues/new/choose"
-        data-test-id="side-nav-bottom-link-share-feedback"
-      >
-        Share Feedback
-      </a>
-    </HStack>
-  );
-}
