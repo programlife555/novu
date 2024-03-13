@@ -4,7 +4,6 @@ import { MouseEventHandler, PropsWithChildren } from 'react';
 import { css } from '../../../styled-system/css';
 
 const popoverDropdownStyle = css({
-  // padding: '12px 20px 14px 15px',
   py: '75',
   pl: '100',
   pr: '125',
