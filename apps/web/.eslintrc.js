@@ -37,18 +37,7 @@ module.exports = {
     ],
     "react-hooks/rules-of-hooks": 'error',
     "react-hooks/exhaustive-deps": 'warn',
-    "import/extensions": [
-      "error",
-      "ignorePackages",
-      {
-        "js": "never",
-        "jsx": "never",
-        "ts": "never",
-        "tsx": "never",
-        "d.ts": "never",
-        "mjs": "never",
-      }
-   ]
+    "import/extensions": 'off',
   },
   env: {
     'cypress/globals': true,
