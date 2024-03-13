@@ -86,7 +86,7 @@ export const RootNavMenu: React.FC = () => {
           label="Layouts"
           icon={<IconViewQuilt />}
           link={ROUTES.LAYOUT}
-          testId="side-nav-settings-link"
+          testId="side-nav-layouts-link"
         />
         <NavMenuLinkButton
           label="Translations"

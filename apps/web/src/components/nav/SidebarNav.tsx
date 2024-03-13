@@ -1,9 +1,7 @@
 import { ROUTES } from '@novu/shared-web';
-import { FC } from 'react';
-import { useMatch } from 'react-router-dom';
+import { FC, useMemo } from 'react';
+import { matchRoutes, useLocation } from 'react-router-dom';
 import { css } from '../../styled-system/css';
-import { RootNavMenu } from './RootNavMenu';
-import { SettingsNavMenu } from './SettingsNavMenu';
 
 const sidebarStyle = css({
   position: 'sticky',
@@ -17,13 +15,29 @@ const sidebarStyle = css({
   bg: 'surface.panel',
 });
 
+type RouteValue = (typeof ROUTES)[keyof typeof ROUTES];
+
 interface ISidebarNavProps {
   root: JSX.Element;
-  routeMenus?: Record<Partial<ROUTES>, JSX.Element>;
+  routeMenus?: Partial<Record<RouteValue, JSX.Element>>;
 }
 
-export const SidebarNav: FC<ISidebarNavProps> = () => {
-  const settingsPageMatch = useMatch(`${ROUTES.SETTINGS}/*`);
+export const SidebarNav: FC<ISidebarNavProps> = ({ root, routeMenus }) => {
+  const location = useLocation();
 
-  return <aside className={sidebarStyle}>{settingsPageMatch ? <SettingsNavMenu /> : <RootNavMenu />}</aside>;
+  // if any nested menus are passed (via routeMenus), see if the current location matches any of them.
+  const pageMatches = useMemo(() => {
+    const paths = routeMenus ? Object.keys(routeMenus).map((path) => ({ path: `${path}/*` })) : [];
+
+    return matchRoutes(paths, location) ?? [];
+  }, [location, routeMenus]);
+
+  return (
+    <aside className={sidebarStyle}>
+      {
+        /* determine which menu to show based on pageMatches (if any) */
+        routeMenus && pageMatches.length > 0 ? routeMenus[pageMatches[0].pathnameBase] : root
+      }
+    </aside>
+  );
 };
