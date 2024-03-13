@@ -11,9 +11,9 @@ import {
   IconTranslate,
   IconViewQuilt,
 } from '@novu/design-system';
-import { ChangesCountBadge } from '../layout/components/ChangesCountBadge';
 import { ROUTES, useSegment } from '@novu/shared-web';
 import { useUserOnboardingStatus } from '../../api/hooks/useUserOnboardingStatus';
+import { ChangesCountBadge } from '../layout/components/ChangesCountBadge';
 import { EnvironmentSelect } from './EnvironmentSelect';
 import { NavMenu } from './NavMenu';
 import { NavMenuLinkButton } from './NavMenuButton/NavMenuLinkButton';
@@ -79,7 +79,7 @@ export const RootNavMenu: React.FC = () => {
           icon={<IconAutorenew />}
           link={ROUTES.CHANGES}
           testId={'side-nav-changes-link'}
-          // rightSide={{ node: <ChangesCountBadge /> }}
+          rightSide={{ node: <ChangesCountBadge /> }}
           isVisible={true}
         />
         <NavMenuLinkButton
