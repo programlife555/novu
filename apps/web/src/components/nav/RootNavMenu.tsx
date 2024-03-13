@@ -14,6 +14,7 @@ import {
 import { UTM_CAMPAIGN_QUERY_PARAM } from '@novu/shared';
 import { ROUTES } from '@novu/shared-web';
 import { HStack } from '../../styled-system/jsx';
+import { ChangesCountBadge } from '../layout/components/ChangesCountBadge';
 import { EnvironmentSelect } from './EnvironmentSelect';
 import { NavMenu } from './NavMenu';
 import { NavMenuLinkButton } from './NavMenuButton/NavMenuLinkButton';
@@ -66,7 +67,7 @@ export const RootNavMenu: React.FC = () => {
           icon={<IconAutorenew />}
           link={ROUTES.CHANGES}
           testId={'side-nav-changes-link'}
-          // rightSide: <ChangesCountBadge />}
+          rightSide={{ node: <ChangesCountBadge /> }}
           isVisible={true}
         />
         <NavMenuLinkButton
@@ -82,7 +83,12 @@ export const RootNavMenu: React.FC = () => {
           link={ROUTES.TENANTS}
           testId="side-nav-tenants-link"
         />
-        <NavMenuLinkButton label="Layouts" icon={<IconViewQuilt />} link={'/todo'} testId="side-nav-settings-link" />
+        <NavMenuLinkButton
+          label="Layouts"
+          icon={<IconViewQuilt />}
+          link={ROUTES.LAYOUT}
+          testId="side-nav-settings-link"
+        />
         <NavMenuLinkButton
           label="Translations"
           isVisible={true}

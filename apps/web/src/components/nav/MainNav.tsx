@@ -27,9 +27,9 @@ interface ISidebarNavProps {
 }
 
 export const SidebarNav: FC<ISidebarNavProps> = () => {
-  const isSettingsPage = useMatch(ROUTES.SETTINGS);
+  const settingsPageMatch = useMatch(`${ROUTES.SETTINGS}/*`);
 
-  return <aside className={sidebarStyle}>{isSettingsPage ? <SettingsNavMenu /> : <RootNavMenu />}</aside>;
+  return <aside className={sidebarStyle}>{settingsPageMatch ? <SettingsNavMenu /> : <RootNavMenu />}</aside>;
 };
 
 export const MainNav: FC<IMainNavProps> = () => {

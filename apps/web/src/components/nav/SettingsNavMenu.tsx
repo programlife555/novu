@@ -16,7 +16,7 @@ import { NavMenuLinkButton } from './NavMenuButton/NavMenuLinkButton';
 import { NavMenuToggleButton } from './NavMenuButton/NavMenuToggleButton';
 import { NavMenuSection } from './NavMenuSection';
 
-const getSettingsRoute = (route?: ROUTES) => `${ROUTES.SETTINGS}${route ?? ''}`;
+const getEnvSettingsRoute = (route: ROUTES, env: 'development' | 'production') => `${route.replace(':env', env)}`;
 
 export const SettingsNavMenu: React.FC = () => {
   const { currentOrganization } = useAuthContext();
@@ -31,8 +31,7 @@ export const SettingsNavMenu: React.FC = () => {
           label="User profile"
           isVisible
           icon={<IconManageAccounts />}
-          // TODO: add new route for profile
-          link={ROUTES.SETTINGS}
+          link={ROUTES.PROFILE}
           testId="side-nav-settings-user-profile"
         ></NavMenuLinkButton>
       </NavMenuSection>
@@ -41,76 +40,77 @@ export const SettingsNavMenu: React.FC = () => {
           label="Organization profile"
           isVisible
           icon={<IconRoomPreferences />}
-          // TODO: new route for Organization
-          link={getSettingsRoute(ROUTES.SETTINGS)}
-          testId="side-nav-settings-translations-link"
+          link={ROUTES.ORGANIZATION}
+          testId="side-nav-settings-organization-link"
         ></NavMenuLinkButton>
         <NavMenuLinkButton
           label="Access security"
           isVisible
           icon={<IconAdminPanelSettings />}
-          // TODO: add new route for Security
-          link={getSettingsRoute(ROUTES.SETTINGS)}
-          testId="side-nav-settings-translations-link"
+          link={ROUTES.SECURITY}
+          testId="side-nav-settings-security-link"
         ></NavMenuLinkButton>
         <NavMenuLinkButton
           label="Team members"
           isVisible
           icon={<IconGroup />}
-          link={getSettingsRoute(ROUTES.TEAM)}
-          testId="side-nav-settings-translations-link"
+          link={ROUTES.TEAM_SETTINGS}
+          testId="side-nav-settings-team-link"
         ></NavMenuLinkButton>
         <NavMenuLinkButton
           label="Branding"
           isVisible
           icon={<IconWorkspacePremium />}
-          link={getSettingsRoute(ROUTES.BRAND)}
-          testId="side-nav-settings-translations-link"
+          link={ROUTES.BRAND_SETTINGS}
+          testId="side-nav-settings-branding-link"
         ></NavMenuLinkButton>
         <NavMenuLinkButton
           label="Billing plans"
           isVisible
           icon={<IconCreditCard />}
-          // TODO: add new route for Billing
-          link={getSettingsRoute(ROUTES.SETTINGS)}
-          testId="side-nav-settings-translations-link"
+          link={ROUTES.BILLING}
+          testId="side-nav-settings-billing-link"
         ></NavMenuLinkButton>
       </NavMenuSection>
       <NavMenuSection title={getOrgScopedTitle('Environments')}>
-        <NavMenuToggleButton icon={<IconConstruction />} label={'Development'} testId="side-nav-settings-development">
+        <NavMenuToggleButton
+          icon={<IconConstruction />}
+          label={'Development'}
+          testId="side-nav-settings-toggle-development"
+        >
           <NavMenuLinkButton
             label="API keys"
             isVisible
             icon={<IconKey />}
-            // TODO: add new route for development/keys
-            link={getSettingsRoute(ROUTES.SETTINGS)}
-            testId="side-nav-settings-development-api-keys"
+            link={getEnvSettingsRoute(ROUTES.API_KEYS, 'development')}
+            testId="side-nav-settings-api-keys-development"
           ></NavMenuLinkButton>
           <NavMenuLinkButton
             label="Inbound webhook"
             isVisible
             icon={<IconWebhook />}
-            // TODO: add new route for development/webhook
-            link={getSettingsRoute(ROUTES.SETTINGS)}
-            testId="side-nav-settings-development-inbound-webhook"
+            link={getEnvSettingsRoute(ROUTES.WEBHOOK, 'development')}
+            testId="side-nav-settings-inbound-webhook-development"
           ></NavMenuLinkButton>
         </NavMenuToggleButton>
-        <NavMenuToggleButton icon={<IconRocketLaunch />} label={'Production'} testId="side-nav-settings-production">
+        <NavMenuToggleButton
+          icon={<IconRocketLaunch />}
+          label={'Production'}
+          testId="side-nav-settings-toggle-production"
+        >
           <NavMenuLinkButton
             label="API keys"
             isVisible
             icon={<IconKey />}
-            // TODO: add new route for development/keys
-            link={getSettingsRoute(ROUTES.SETTINGS)}
-            testId="side-nav-settings-production-api-keys"
+            link={getEnvSettingsRoute(ROUTES.API_KEYS, 'production')}
+            testId="side-nav-settings-api-keys-production"
           ></NavMenuLinkButton>
           <NavMenuLinkButton
             label="Inbound webhook"
             isVisible
             icon={<IconWebhook />}
-            // TODO: add new route for prod/webhook
-            link={getSettingsRoute(ROUTES.SETTINGS)}
-            testId="side-nav-settings-production-inbound-webhook"
+            link={getEnvSettingsRoute(ROUTES.WEBHOOK, 'production')}
+            testId="side-nav-settings-inbound-webhook-production"
           ></NavMenuLinkButton>
         </NavMenuToggleButton>
       </NavMenuSection>
